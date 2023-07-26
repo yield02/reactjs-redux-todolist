@@ -3,14 +3,13 @@ import './App.scss';
 import Header from '../components/Header/Header';
 import Task from '../pages/task/Task'
 import SignIn from '../pages/sign-in/SignIn';
-import { Routes, Route, Navigate} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authActions, getAuth } from '../../auth'
 
 
 function App({authenticated, signOut}) {
-
-  console.log(signOut());
+  console.log(authenticated);
 
   return (
     <div className="App container-md">
@@ -23,11 +22,9 @@ function App({authenticated, signOut}) {
           path='/'
           element={
            authenticated ? (
-              <Navigate to={{
-                pathname: '/',
-              }}/>
+            <Task />
             ) : (
-              <SignIn/>
+            <SignIn/>
             )
           }
         />
@@ -37,9 +34,7 @@ function App({authenticated, signOut}) {
           element={authenticated ? (
               <Task />
               ) : (
-              <Navigate to={{
-                pathname: '/sign-in',
-              }}/>
+              <SignIn/>
             )
           }
         />

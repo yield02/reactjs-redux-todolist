@@ -1,52 +1,10 @@
-@keyframes ldio-zoscd5cuu8r {
-  0% {
-    top: 48px;
-    left: 48px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    top: 9px;
-    left: 9px;
-    width: 78px;
-    height: 78px;
-    opacity: 0;
-  }
-}.ldio-zoscd5cuu8r div {
-  position: absolute;
-  border-width: 2px;
-  border-style: solid;
-  opacity: 1;
-  border-radius: 50%;
-  animation: ldio-zoscd5cuu8r 1s cubic-bezier(0,0.2,0.8,1) infinite;
-}.ldio-zoscd5cuu8r div:nth-child(1) {
-  border-color: #ffffff;
-  animation-delay: 0s;
-}
-.ldio-zoscd5cuu8r div:nth-child(2) {
-  border-color: #9400d3;
-  animation-delay: -0.5s;
-}
-.loadingio-spinner-ripple-v4d64xzet1i {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  overflow: hidden;
-  background: #222;
-  margin-right: 8px;
-}
-.ldio-zoscd5cuu8r {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform: translateZ(0) scale(0.24);
-  backface-visibility: hidden;
-  transform-origin: 0 0;
-}
-.ldio-zoscd5cuu8r div { box-sizing: content-box; }
 
+.signout-container {
+  border-right: 1px solid #333333;
+}
 
 .Signout-btn {
-  border-right: 1px solid #333333;
+  border: none;
+  background: none;
+  color: var(--text-color);
 }

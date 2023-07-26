@@ -10,10 +10,19 @@ export function authReducer(state = new AuthState(), {payload, type}) {
     switch(type) {
         case INIT_AUTH:
         case SIGN_IN_SUCCESS:
+            console.log("Đăng nhập thành công");
             return state.merge({
                 authenticated: !!payload,
                 id: payload ? payload.uid : null
             });
+            
+        case SIGN_OUT_SUCCESS:
+            return new AuthState();
+
+        case SIGN_IN_ERROR:
+            console.error("[L] ERROR Authentication: ", payload);
+            return state;
+            
         case SIGN_OUT_SUCCESS:
             return new AuthState();
         default: 
