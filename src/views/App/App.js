@@ -3,13 +3,13 @@ import './App.scss';
 import Header from '../components/Header/Header';
 import Task from '../pages/task/Task'
 import SignIn from '../pages/sign-in/SignIn';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route, useLocation} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authActions, getAuth } from '../../auth'
 
 
 function App({authenticated, signOut}) {
-  console.log(authenticated);
+  const location = useLocation();
 
   return (
     <div className="App container-md">
@@ -22,7 +22,7 @@ function App({authenticated, signOut}) {
           path='/'
           element={
            authenticated ? (
-            <Task />
+            <Task location={location}/>
             ) : (
             <SignIn/>
             )

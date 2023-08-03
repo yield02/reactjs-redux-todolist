@@ -1,23 +1,69 @@
-import Todo from '../../components/Todo/Todo';
+import Todo from '../../components/Todo';
+import TaskForm from '../../components/Task-form';
 import './Task.scss';
+import TaskFilter from '../../components/Task-filter';
+import {getTaskFilter, tasksActions} from '../../../tasks'
+import { connect } from 'react-redux';
+import { Component } from 'react';
+import { createSelector } from 'reselect';
+import { getTask } from '../../../tasks/selector';
 
-function Task () {
-    return (
-        <div className='d-flex flex-column'>
-            <div className='input_container'>
-                <input className='todo_input' placeholder='Bạn cần hoàn thành việc gì?'/>
-            </div>
-            <div className='todo_filter'>
-                <a className='filter-btn active' href='/'>Tất cả</a>
-                <span className='space'>/</span>
-                <a className='filter-btn' href='/filter?=active'>Đang làm</a>
-                <span className='space'>/</span>
-                <a className='filter-btn' href='/filter?=completed'>Đã hoàn thành</a>
-            </div>
-            <div>
-                <Todo></Todo>
-            </div>
-        </div>)
+
+
+export class Task extends Component {
+
+
+    componentWillMount() {
+        this.props.loadTasks();
+        this.props.filterTasks(
+          this.getFilterParam(this.props.location.search)
+        );
+      }
+    
+    componentDidUpdate() {
+      const filterState = this.getFilterParam(this.props.location.search);
+      if(filterState !== this.props.filterType) {
+          this.props.filterTasks(filterState);
+      }
+    }
+    
+    componentWillUnmount() {
+    }
+
+    getFilterParam(search) {
+        const params = new URLSearchParams(search);
+        return params.get('filter') || 'all';
+    }
+    
+
+    render() {
+        return (
+            <div className='d-flex flex-column'>
+                <div className='input_container'>
+                    <TaskForm createTask={this.props.createTask}></TaskForm>
+                </div>
+                <TaskFilter filter={this.props.filterType}></TaskFilter>
+                <div>
+                    <Todo></Todo>
+                </div>
+            </div>)
+    }
 }
 
-export default Task;
+const mapStateToProps = createSelector(
+    getTaskFilter,
+    getTask,
+    (filterType, tasks) => ({
+        filterType,
+        tasks
+    })
+);
+
+
+const mapDispatchToProps = Object.assign(
+    {},
+    tasksActions
+  );
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(Task);

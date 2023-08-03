@@ -6,18 +6,6 @@ function Todo() {
         <div className='todolist_container'>
             <TodoItem data={"Học tiếng anh"}></TodoItem>
             <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
-            <TodoItem data={"Học tiếng anh"}></TodoItem>
         </div>
     )
 }

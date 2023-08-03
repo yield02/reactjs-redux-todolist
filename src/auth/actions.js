@@ -53,6 +53,3 @@ export function signInWithGoogle() {
     return authenticate(new firebase.auth.GoogleAuthProvider());
 }
 
-export function signInWithTwitter() {
-
-}

@@ -1,0 +1,16 @@
+.todo_filter {
+    margin-bottom: 55px;
+
+    .filter-btn {
+        color: var(--text-color);
+        text-decoration: none;
+        &.active {
+            color: #fff;
+        }
+    }
+
+    .space {
+        margin: 8px;
+        cursor: default;
+    }
+}

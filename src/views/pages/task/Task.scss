@@ -3,36 +3,8 @@
 .input_container {
     height: 62px;
     margin: 80px 0 20px;
-    .todo_input {
-        outline: none;
-        border: 0;
-        border-bottom: 1px dotted #666;
-        border-radius: 0;
-        padding: 0 0 5px;
-        width: 100%;
-        font-family: inherit;
-        font-size: 32px;
-        font-weight: 400;
-        color: #fff;
-        background: transparent;
-        -webkit-font-smoothing: antialiased;
-    }
+
 }
 
 
-.todo_filter {
-    margin-bottom: 55px;
 
-    .filter-btn {
-        color: var(--text-color);
-        text-decoration: none;
-        &.active {
-            color: #fff;
-        }
-    }
-
-    .space {
-        margin: 8px;
-        cursor: default;
-    }
-}
