@@ -27,13 +27,14 @@ export class FirebaseList {
         let list = [];
         
 
-        ref.once('value', () => {
+        ref.once('value', (snapshot) => {
             initialized = true;
             dispatch(this._actions.onLoad(list));
           });
 
 
         ref.on('child_added', snapshot => {
+            
             if (initialized) {
                 dispatch(this._actions.onAdd(this.unwrapSnapshot(snapshot)));
             }
@@ -55,6 +56,6 @@ export class FirebaseList {
         let attrs = snapshot.val();
         attrs.key = snapshot.key;
         return new this._modelClass(attrs);
-      }
+    }
 
 }

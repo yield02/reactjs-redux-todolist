@@ -6,16 +6,14 @@ export const TasksState = new Record({
     deleted: null,
     filter: '',
     list: new List(),
-    previous: null
   });
 
 function tasksReducer(state = new TasksState(), {payload, type}) {
     switch(type) {
-      case CREATE_TASK_SUCCESS: 
+      case CREATE_TASK_SUCCESS:
         return state.merge({
           deleted: null,
-          previous: null,
-          list: state.deleted && state.deleted.key === payload.key ? state.previous : state.list.unshift(payload)
+          list: state.list.push(payload)
         })
         case LOAD_TASKS_SUCCESS:
         	return state.set('list', new List(payload.reverse()));

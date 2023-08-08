@@ -9,7 +9,7 @@ function TaskForm({createTask,...props}) {
     const handleAddTask = function(e) {
         if(e.code === "Enter" && inputValue){
             createTask(inputValue);
-            e.target.value = "";
+            setInputValue('');
         }
     }
 

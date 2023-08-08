@@ -2,11 +2,10 @@ import Todo from '../../components/Todo';
 import TaskForm from '../../components/Task-form';
 import './Task.scss';
 import TaskFilter from '../../components/Task-filter';
-import {getTaskFilter, tasksActions} from '../../../tasks'
+import {getTaskFilter, getVisibleTasks, tasksActions} from '../../../tasks'
 import { connect } from 'react-redux';
 import { Component } from 'react';
 import { createSelector } from 'reselect';
-import { getTask } from '../../../tasks/selector';
 
 
 
@@ -44,7 +43,7 @@ export class Task extends Component {
                 </div>
                 <TaskFilter filter={this.props.filterType}></TaskFilter>
                 <div>
-                    <Todo></Todo>
+                    <Todo tasks={this.props.tasks}></Todo>
                 </div>
             </div>)
     }
@@ -52,7 +51,7 @@ export class Task extends Component {
 
 const mapStateToProps = createSelector(
     getTaskFilter,
-    getTask,
+    getVisibleTasks,
     (filterType, tasks) => ({
         filterType,
         tasks
