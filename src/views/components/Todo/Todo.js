@@ -1,12 +1,12 @@
 import TodoItem from '../TodoItem/TodoItem';
 import './Todo.scss';
 
-function Todo({tasks}) {
+function Todo({tasks, updateTask}) {
     return (
         <div className='todolist_container'>
             {
                 tasks.map((task, index) => {
-                    return (<TodoItem key={index} data={task}></TodoItem>)
+                    return (<TodoItem key={index} updateTask={updateTask} data={task}></TodoItem>)
                 })
             }
         </div>

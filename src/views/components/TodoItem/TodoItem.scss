@@ -5,6 +5,8 @@
 
     .todo_content {
         position: relative;
+        background: transparent;
+        border: none;
         color: #fff;
         font-size: 22px;
         font-weight: 300;
@@ -14,6 +16,11 @@
         -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
         white-space: nowrap;
+        width: 100%;
+        &.active {
+            color:#85bf6b;
+            
+        }
     }
 
 

@@ -35,8 +35,25 @@ function createTaskError(error) {
     }
 }
 
-export function updateTaskSuccess(){
+export function updateTask(task, changes) {
+    return dispatch => {
+        taskList.update(task.key, changes)
+          .catch(error => dispatch(updateTaskError(error)));
+      };
+}
 
+export function updateTaskError(error) {
+    return {
+        type: UPDATE_TASK_ERROR,
+        payload: error
+    }
+}
+
+export function updateTaskSuccess(task){
+    return {
+        type: UPDATE_TASK_SUCCESS,
+        payload: task
+    }
 }
 
 export function loadTaskSuccess(tasks) {
@@ -51,7 +68,6 @@ export function removeTaskSuccess() {
 }
 
 export function filterTasks(filter) {
-    // console.log("Đã xét filter:", filter)
     return {
         type: FILTER_TASKS,
         payload: filter

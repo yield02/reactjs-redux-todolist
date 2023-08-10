@@ -2,32 +2,48 @@ import Button from '../Button/Button';
 import './TodoItem.scss';
 import {useState} from 'react'
 
-function TodoItem({data}) {
+function TodoItem({data, updateTask}) {
     const [isEdit, setIsEdit] = useState(false);
-    const [title, setTitle] = useState(data?.title);
+    const [tValue, setTValue] = useState(data?.title);
 
     const handleEditTask = () => {
         setIsEdit(true);
     }
 
-    const handleUpdateTask = () => {
+    const handleUpdateTitleTask = (data) => {
         setIsEdit(false);
+        if(tValue !== '' && tValue !== data?.title) {
+            // xử lý update;
+            updateTask(data, {title: tValue})
+        }
     }
 
+    const handleUpdateStatusTask = (data) => {
+        updateTask(data, {completed: !data?.completed})
+    }
 
     return (
         <div className='item_container d-flex flex-row'>
             <div className='me-3 d-flex align-items-center'>
-                <Button className="round-btn">
+                <Button className={data?.completed && "active round-btn" || 'round-btn'} onClick={() => handleUpdateStatusTask(data)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-check2" viewBox="0 0 16 16">
                         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </Button>
             </div>
             <div className='me-3 d-flex align-items-center flex-grow-1'>
-                <div className='todo_content' contentEditable={isEdit} onKeyDown={(e)=> {e.keyCode === 13 && handleUpdateTask()}} onChange={(e)=>{setTitle(e.target.value)}}>
-                    {title}
+                {
+                isEdit && 
+                <input className='todo_content' onKeyDown={(e)=> {e.keyCode === 13 && handleUpdateTitleTask(data)}} onChange={(e)=>{setTValue(e.target.value)}} value={tValue}/>
+                }
+
+                {
+                !isEdit && 
+                <div className={data?.completed && "active todo_content" || 'todo_content'}>
+                    {data?.title}
                 </div>
+                }
+
             </div>
             <div className='me-3 d-flex align-items-center'>
                 {/* {update Btn} */}
@@ -37,7 +53,7 @@ function TodoItem({data}) {
                     </svg>
                 </Button>}
                 {/* {Close Btn} */}
-                {isEdit &&<Button className='round-btn' onClick={handleUpdateTask}>
+                {isEdit &&<Button className='round-btn' onClick={() => handleUpdateTitleTask(data)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
                         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                     </svg>

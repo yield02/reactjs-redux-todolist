@@ -1,5 +1,5 @@
 import { List, Record } from 'immutable';
-import { CREATE_TASK_SUCCESS, FILTER_TASKS, LOAD_TASKS_SUCCESS, CREATE_TASK_ERROR } from './action-types';
+import { CREATE_TASK_SUCCESS, FILTER_TASKS, LOAD_TASKS_SUCCESS, CREATE_TASK_ERROR, UPDATE_TASK_SUCCESS } from './action-types';
 
 
 export const TasksState = new Record({
@@ -17,6 +17,12 @@ function tasksReducer(state = new TasksState(), {payload, type}) {
         })
         case LOAD_TASKS_SUCCESS:
         	return state.set('list', new List(payload.reverse()));
+
+        case UPDATE_TASK_SUCCESS:
+          return state.merge({
+            deleted: null,
+            list: state.list.map(task => task.key === payload.key ? payload : task)
+          })
 
         case FILTER_TASKS:
           return state.set('filter', payload);

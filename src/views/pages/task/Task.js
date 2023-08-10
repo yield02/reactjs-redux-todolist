@@ -43,7 +43,7 @@ export class Task extends Component {
                 </div>
                 <TaskFilter filter={this.props.filterType}></TaskFilter>
                 <div>
-                    <Todo tasks={this.props.tasks}></Todo>
+                    <Todo tasks={this.props.tasks} updateTask={this.props.updateTask}></Todo>
                 </div>
             </div>)
     }
