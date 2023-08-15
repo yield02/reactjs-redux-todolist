@@ -26,6 +26,12 @@ export class FirebaseList {
             firebaseDb.ref(`${this._path}/${key}`).update(value, error => error ? reject(error) : resolve());
         })
     }
+    
+    remove(key) {
+        return new Promise((resolve, reject) => {
+            firebaseDb.ref(`${this._path}/${key}`).remove(error => error ? reject(error) : resolve());
+        })
+    }
 
     subscribe(dispatch) {
         let ref = firebaseDb.ref(this._path);
@@ -51,6 +57,10 @@ export class FirebaseList {
 
         ref.on('child_changed', snapshot => {
             dispatch(this._actions.onChange(this.unwrapSnapshot(snapshot)));
+        });
+
+        ref.on('child_removed', snapshot => {
+            dispatch(this._actions.onRemove(this.unwrapSnapshot(snapshot)));
         });
         
 

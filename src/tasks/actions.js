@@ -42,6 +42,20 @@ export function updateTask(task, changes) {
       };
 }
 
+export function removeTask(task) {
+    return dispatch => {
+        taskList.remove(task.key)
+            .catch(error => dispatch(removeTaskError(error)))
+    }
+}
+
+export function removeTaskError(error) {        
+    return {
+        type: REMOVE_TASK_ERROR,
+        payload: error
+    }
+}
+
 export function updateTaskError(error) {
     return {
         type: UPDATE_TASK_ERROR,
@@ -63,8 +77,11 @@ export function loadTaskSuccess(tasks) {
     }
 }
 
-export function removeTaskSuccess() {
-
+export function removeTaskSuccess(tasks) {
+    return {
+        type: REMOVE_TASK_SUCCESS,
+        payload: tasks
+    }
 }
 
 export function filterTasks(filter) {

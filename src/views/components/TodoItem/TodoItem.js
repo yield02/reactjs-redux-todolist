@@ -2,7 +2,7 @@ import Button from '../Button/Button';
 import './TodoItem.scss';
 import {useState} from 'react'
 
-function TodoItem({data, updateTask}) {
+function TodoItem({data, updateTask, removeTask}) {
     const [isEdit, setIsEdit] = useState(false);
     const [tValue, setTValue] = useState(data?.title);
 
@@ -59,14 +59,32 @@ function TodoItem({data, updateTask}) {
                     </svg>
                 </Button>}
             </div>
+            {/* delete button */}
             {!isEdit && <div className='d-flex align-items-center'>
-                <Button className="round-btn">
+                <Button className="round-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
                         <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
                     </svg>
                 </Button>
             </div>}
+            <div className="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="deleteModalLabel">LƯU Ý</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                        Bạn có chắc muốn xóa hay không ?
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={() => removeTask(data)}>Xóa</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
